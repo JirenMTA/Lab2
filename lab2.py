@@ -211,7 +211,7 @@ out_put.write(beauty_data)
 out_put.close()
 
 print(f'Число валидных записей: {len(true_data)}')
-print(f'Число невалидныч записей: {len(data) - len(true_data)}')
+print(f'Число невалидных записей: {len(data) - len(true_data)}')
 print(f'  - Число невалидных номеров телефона:  {telephone}')
 print(f'  - Число невалидных масс: {height}')
 print(f'  - Число невалидных ИНН: {inn}')
