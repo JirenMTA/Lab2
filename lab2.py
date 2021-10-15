@@ -1,12 +1,16 @@
 %%writefile lab2.py
-#ФИО: Фам Нгок Хунг
-#№ Группа 6112
+# ФИО: Фам Нгок Хунг
+# № Группа 6112
 # Вариант 112
 import json
 import re
 import time
+import argparse
 from tqdm import tqdm
-
+parser = argparse.ArgumentParser()
+parser.add_argument('input', help='Get path file input')
+parser.add_argument('output', help='Get path file output')
+args = parser.parse_args()
 class Validator:
   '''
   Объект класса Validator  
@@ -154,8 +158,7 @@ class Validator:
       return False
     return True
 
-path = 'D:\\112.txt'
-data = json.load(open(path, encoding='windows-1251'))
+data = json.load(open(args.input, encoding='windows-1251'))
 
 true_data = list()
 telephone = 0
@@ -204,8 +207,7 @@ with tqdm(total = len(data)) as progressbar:
 
 #print (f'{telephone} {height} {inn} {passport} {university} {work_experience} {political_view}  {worldview}  {address}')
 
-path = 'out_put.txt'
-out_put = open(path, 'w', encoding = 'utf-8')
+out_put = open(args.output, 'w', encoding = 'utf-8')
 beauty_data = json.dumps(true_data, ensure_ascii = False, indent = 4)
 #json.dump(beauty_data, out_put, ensure_ascii = False)
 out_put.write(beauty_data)
@@ -223,5 +225,9 @@ print(f'  - Число невалидных политических взгля�
 print(f'  - Число невалидных мировоззрений: {worldview}')
 print(f'  - Число невалидных адрессов: {address}')
 print('\n*Замечание: каждый человек может быть иметь несколько невалидых записей')
+
+
 help(Validator)
 !autopep8 --in-place --aggressive --aggressive lab2.py
+
+#Command line by using argparse: python lab2.py D:\\112.txt path\to\file\output.txt 
